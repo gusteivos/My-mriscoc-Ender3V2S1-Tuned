@@ -890,7 +890,7 @@ void drawInfoMenu() {
 
   DWINUI::drawCenteredString(92,  GET_TEXT_F(MSG_INFO_MACHINENAME));
   #if ENABLED(CONFIGURABLE_MACHINE_NAME)
-  DWINUI::drawCenteredString(112, machine_name);
+  DWINUI::drawCenteredString(112, marlin.machine_name);
   #else
   static_assert(sizeof(MACHINE_NAME) <= 33, "MACHINE Name must be 32 characters or less.");
   DWINUI::drawCenteredString(112, F(MACHINE_NAME));
