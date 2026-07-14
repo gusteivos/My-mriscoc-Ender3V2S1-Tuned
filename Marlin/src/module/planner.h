@@ -1169,9 +1169,22 @@ class Planner {
         float limit_value = max_value;
         LOOP_LOGICAL_AXES(idx) {
           if (unit_vec[idx]) {
-            const uint32_t abs_vec = ABS(unit_vec[idx]);
-            if (limit_value * abs_vec > settings.max_acceleration_mm_per_s2[idx])
-              limit_value = settings.max_acceleration_mm_per_s2[idx] / abs_vec;
+
+            /**
+             * See:
+             *  https://github.com/mriscoc/Ender3V2S1/issues/1551
+             *  https://github.com/MarlinFirmware/Marlin/issues/27918#issuecomment-3145339116
+             *  https://github.com/MarlinFirmware/Marlin/blob/f44cb948c7480845826110fdab3000d0e2de4b91/Marlin/src/module/planner.h#L1242-L1244
+             */
+            const float abs_vec = ABS(unit_vec[idx]);
+            // Skip small components, avoiding divide by almost-zero
+            if (abs_vec > 1.5e-3f/*LIMIT_DIVISOR_THRESHOLD*/) {  // sqrt of normalize_junction_vector() threshold (for good measure)
+
+              if (limit_value * abs_vec > settings.max_acceleration_mm_per_s2[idx])
+                limit_value = settings.max_acceleration_mm_per_s2[idx] / abs_vec;
+
+            }
+
           }
         }
         return limit_value;
