@@ -21,6 +21,9 @@
  */
 #pragma once
 
+// Modified by gusteivos
+// https://github.com/gusteivos/My-mriscoc-Ender3V2S1-Tuned
+
 // Created by configs generator for Professional firmware
 // https://github.com/mriscoc/Ender3V2S1
 
@@ -1838,9 +1841,9 @@
    */
   #define POWER_LOSS_RECOVERY  // Ender Configs
   #if ENABLED(POWER_LOSS_RECOVERY)
-    #define PLR_ENABLED_DEFAULT       false // Power-Loss Recovery enabled by default. (Set with 'M413 Sn' & M500)
-    //#define PLR_HEAT_BED_ON_REBOOT        // Heat up bed immediately on reboot to mitigate object detaching/warping.
-    //#define PLR_HEAT_BED_EXTRA          0 // (°C) Relative increase of bed temperature for better adhesion (limited by max temp).
+    #define PLR_ENABLED_DEFAULT     true  // Power-Loss Recovery enabled by default. (Set with 'M413 Sn' & M500) // My Tuned
+    #define PLR_HEAT_BED_ON_REBOOT        // Heat up bed immediately on reboot to mitigate object detaching/warping.
+    #define PLR_HEAT_BED_EXTRA          0 // (°C) Relative increase of bed temperature for better adhesion (limited by max temp).
     //#define PLR_BED_THRESHOLD BED_MAXTEMP // (°C) Skip user confirmation at or above this bed temperature (0 to disable)
 
     //#define POWER_LOSS_PIN             44 // Pin to detect power-loss. Set to -1 to disable default pin on boards without module, or comment to use board default.
@@ -2424,7 +2427,7 @@
   #if ENABLED(DISTINCT_E_FACTORS)
     #define ADVANCE_K { 0.22 }    // (mm) Compression length per 1mm/s extruder speed, per extruder. Override with 'M900 T<tool> K<mm>'.
   #else
-    #define ADVANCE_K 0           // (mm) Compression length for all extruders. Override with 'M900 K<mm>'. 
+    #define ADVANCE_K 0           // (mm) Compression length for all extruders. Override with 'M900 K<mm>'. // My Tuned
   #endif
   //#define ADVANCE_K_EXTRA       // Add a second linear advance constant, configurable with 'M900 L'.
 #endif

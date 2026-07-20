@@ -1374,11 +1374,11 @@
  * Override with M201
  *                                      X, Y, Z [, I [, J [, K...]]], E0 [, E1[, E2...]]
  */
-#define DEFAULT_MAX_ACCELERATION      { 500, 500, 100, 1000 }  // Ender Configs
+#define DEFAULT_MAX_ACCELERATION      { 950, 950, 100, 1000 } // My Tuned
 
 #define LIMITED_MAX_ACCEL_EDITING     // Limit edit via M201 or LCD to DEFAULT_MAX_ACCELERATION * 2  // MRiscoC allows higher limits
 #if ENABLED(LIMITED_MAX_ACCEL_EDITING)
-  #define MAX_ACCEL_EDIT_VALUES       { 9999, 9999, 999, 9999 } // ...or, set your own edit limits  // MRiscoC allows higher limits
+  #define MAX_ACCEL_EDIT_VALUES       { 6000, 6000, 200, 20000 } // ...or, set your own edit limits // Default 
 #endif
 
 /**
@@ -1389,8 +1389,8 @@
  *   M204 R    Retract Acceleration
  *   M204 T    Travel Acceleration
  */
-#define DEFAULT_ACCELERATION          500    // X, Y, Z and E acceleration for printing moves  // Ender Configs
-#define DEFAULT_RETRACT_ACCELERATION  800    // E acceleration for retracts  // Ender Configs
+#define DEFAULT_ACCELERATION          1000    // X, Y, Z and E acceleration for printing moves // My Tuned
+#define DEFAULT_RETRACT_ACCELERATION  1000    // E acceleration for retracts // My Tuned
 #define DEFAULT_TRAVEL_ACCELERATION   1000    // X, Y, Z acceleration for travel (non printing) moves  // Ender Configs
 
 /**
@@ -2360,7 +2360,7 @@
 #define LCD_BED_TRAMMING  // ProUI has a bed tramming menu
 
 #if ENABLED(LCD_BED_TRAMMING)
-  #define BED_TRAMMING_INSET_LFRB { 30, 30, 30, 30 } // (mm) Left, Front, Right, Back insets
+  #define BED_TRAMMING_INSET_LFRB { 35, 35, 35, 35 } // (mm) Left, Front, Right, Back insets // My Tuned
   #define BED_TRAMMING_HEIGHT      0.0        // (mm) Z height of nozzle at tramming points
   #define BED_TRAMMING_Z_HOP       5.0        // (mm) Z raise between tramming points
   //#define BED_TRAMMING_INCLUDE_CENTER       // Move to the center after the last corner
@@ -3589,7 +3589,7 @@
 //
 // Professional firmware features:
 //
-//#define PROUI_EX 1
+#define PROUI_EX 1
 #if PROUI_EX
   #if ENABLED(FILAMENT_RUNOUT_SENSOR)
     #define HAS_PROUI_RUNOUT_SENSOR 1
@@ -3597,7 +3597,7 @@
   #if ENABLED(EXTRUDERS)
     #define HAS_PROUI_MAXTEMP 1
   #endif
-  #define HAS_CGCODE 1
+  //#define HAS_CGCODE 1
   #define DEF_PROBEZFIX 0
 #endif
 #if ENABLED(DWIN_LCD_PROUI)
@@ -3632,6 +3632,8 @@
 //#define CCLOUD_PRINT_SUPPORT  // Allows enable/disable Creality Cloud Print Support
 #define ZHOME_BEFORE_LEVELING
 //#define SMOOTH_ENCODER_MENUITEMS  // Menu items value faster/smooth change rate
+
+#define MY_TUNED
 
 //#define DWIN_CREALITY_LCD_JYERSUI   // Jyers UI by Jacob Myers
 //#define DWIN_MARLINUI_PORTRAIT      // MarlinUI (portrait orientation)
