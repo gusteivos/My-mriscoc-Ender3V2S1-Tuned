@@ -898,12 +898,28 @@ void drawInfoMenu() {
   DWINUI::drawCenteredString(145, GET_TEXT_F(MSG_INFO_SIZE));
   DWINUI::drawCenteredString(165, machine_size);
 
-  for (uint8_t i = 0; i < 4 - 2 * ENABLED(PROUI_EX); ++i) {
+  #if ENABLED(PROUI_EX) && DISABLED(MY_TUNED)
+    for (uint8_t i = 0; i < 2; ++i)
+  #else
+    for (uint8_t i = 0; i < 4; ++i)
+  #endif
+  {
     DWINUI::drawIcon(ICON_Step + i, ICOX, 90 + i * MLINE);
     dwinDrawHLine(hmiData.colorSplitLine, 16, MYPOS(i + 2), 240);
   }
 
-  #if PROUI_EX
+  #ifdef ENABLED(MY_TUNED)
+
+    DWINUI::drawCenteredString(198, GET_TEXT_F(MSG_INFO_FWVERSION));
+    DWINUI::drawCenteredString(218, F(SHORT_BUILD_VERSION));
+
+    DWINUI::drawCenteredString(251, GET_TEXT_F(MSG_INFO_BUILD));
+    DWINUI::drawCenteredString(271, F(dateTime));
+
+    DWINUI::drawCenteredString(324, F("Website URL"));
+    ui.set_status(WEBSITE_URL);
+
+  #elif PROUI_EX
     proUIEx.init();
   #else
     DWINUI::drawCenteredString(198, GET_TEXT_F(MSG_INFO_FWVERSION));
