@@ -908,7 +908,7 @@ void drawInfoMenu() {
     dwinDrawHLine(hmiData.colorSplitLine, 16, MYPOS(i + 2), 240);
   }
 
-  #ifdef ENABLED(MY_TUNED)
+  #if ENABLED(MY_TUNED)
 
     DWINUI::drawCenteredString(198, GET_TEXT_F(MSG_INFO_FWVERSION));
     DWINUI::drawCenteredString(218, F(SHORT_BUILD_VERSION));
